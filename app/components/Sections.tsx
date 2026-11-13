@@ -16,6 +16,7 @@ import { ACTIVE } from "./copy";
 import { Pausable, WordReveal } from "./motion";
 import { Accent, Eyebrow, Logo } from "./primitives";
 import Image from "next/image";
+import { Waveform3D } from "./Waveform3D";
 
 /* ── Sectors band ───────────────────────────────────────── */
 
@@ -108,6 +109,7 @@ export function FinalCTA({ image }: { image: string | null }) {
   return (
     <section className="p-2 sm:p-3">
       <div className="sky grain relative isolate overflow-hidden rounded-[22px] text-white sm:rounded-[30px]">
+        {!image && <Waveform3D shape="arch" peak={0.5} className="-z-10 h-[320px] sm:h-[400px]" />}
         {image && (
           <>
             <Image src={image} alt="" fill sizes="100vw" quality={80} className="-z-20 object-cover object-bottom" />
@@ -117,7 +119,7 @@ export function FinalCTA({ image }: { image: string | null }) {
             />
           </>
         )}
-        <div className={`mx-auto max-w-[900px] px-5 pt-24 text-center sm:pt-32 ${image ? "pb-[300px] sm:pb-[380px]" : "pb-24 sm:pb-32"}`}>
+        <div className={`mx-auto max-w-[900px] px-5 pt-24 text-center sm:pt-32 pb-[280px] sm:pb-[360px]`}>
           <Eyebrow tone="dark">Take the next step</Eyebrow>
           <h2 className="mx-auto mt-7 max-w-[16ch] text-balance text-[clamp(2.4rem,6vw,5rem)] font-medium leading-[0.98] tracking-[-0.045em]">
             Your list is waiting. Let Vloid make the <Accent className="text-ember-gradient pr-[0.05em]">calls.</Accent>

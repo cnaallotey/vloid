@@ -6,6 +6,7 @@ import { ArrowRight, AudioLines, Clock3, FileSpreadsheet } from "lucide-react";
 import { ACTIVE } from "./copy";
 import { useEmail } from "./email-context";
 import Image from "next/image";
+import { Waveform3D } from "./Waveform3D";
 import { useInViewport } from "./motion";
 
 const BRIEFS = [
@@ -65,10 +66,10 @@ export function Hero({ image }: { image: string | null }) {
       <div
         ref={ref}
         data-paused={visible ? undefined : ""}
-        className={`sky grain relative isolate flex flex-col overflow-hidden rounded-[22px] text-white sm:rounded-[30px] ${
-          image ? "min-h-[max(100svh,820px)] lg:min-h-[max(100svh,900px)]" : "pb-16 sm:pb-24"
-        }`}
+        className={`sky grain relative isolate flex flex-col overflow-hidden rounded-[22px] text-white sm:rounded-[30px] min-h-[max(100svh,820px)] lg:min-h-[max(100svh,900px)]`}
       >
+        {/* 3D waveform by default; a dropped-in hero image replaces it. */}
+        {!image && <Waveform3D shape="valley" peak={0.5} className="-z-10 h-[80%]" />}
         {image && (
           <>
             {/* Illustration slot — see image-prompts.md. Top third stays dark for the headline. */}
